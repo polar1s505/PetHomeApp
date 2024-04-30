@@ -2,27 +2,57 @@
 {
     public abstract class PetBase
     {
-        public string ID { get; }
+        private string _id;
+        private string _species;
+        private string _age;
+        private string _nickname;
+        private string _physicalDescription;
+        private string _personalityDescription;
+        public string ID 
+        { 
+            get { return _id; }
+            set { _id = value; }
+        }
 
-        public string Species { get; protected set; }
+        public string Species 
+        { 
+            get { return _species; }
+            set { _species = value; }
+        }
 
-        public string Age { get; protected set; }
+        public string Age 
+        { 
+            get { return _age; }
+            set { _age = value; }
+        }
 
-        public string Nickname { get; protected set; }
+        public string Nickname 
+        { 
+            get { return _nickname; }
+            set { _nickname = value; }
+        }
 
-        public string PhysicalDescription { get; protected set; }
+        public string PhysicalDescription 
+        { 
+            get { return _physicalDescription; }
+            protected set { _physicalDescription = value; }
+        }
 
-        public string PersonalityDescription { get; protected set; }
+        public string PersonalityDescription 
+        { 
+            get { return _personalityDescription; }
+            set { _personalityDescription = value; }
+        }
 
         // Constructor
         public PetBase(string iD, string species, string age, string nickname, string physicalDescription, string personalityDescription)
         {
-            ID = iD;
-            Species = species;
-            Age = age;
-            Nickname = nickname;
-            PhysicalDescription = physicalDescription;
-            PersonalityDescription = personalityDescription;
+            _id = iD;
+            _species = species;
+            _age = age;
+            _nickname = nickname;
+            _physicalDescription = physicalDescription;
+            _personalityDescription = personalityDescription;
         }
 
         public virtual void DisplayInfo()
