@@ -35,7 +35,7 @@
         public string PhysicalDescription 
         { 
             get { return _physicalDescription; }
-            protected set { _physicalDescription = value; }
+            set { _physicalDescription = value; }
         }
 
         public string PersonalityDescription 
@@ -63,6 +63,18 @@
             Console.WriteLine($"Nickname: {Nickname}");
             Console.WriteLine($"Physical description: {PhysicalDescription}");
             Console.WriteLine($"Personality: {PersonalityDescription}");
+        }
+
+        public virtual void CheckAgeAndPhyscalDescr(out bool correctAge, out bool correctPhysycalDescr)
+        {
+            correctAge = (Age.Contains("?")) ? false : true;
+            correctPhysycalDescr = (PhysicalDescription == "" || PhysicalDescription == "tbd") ? false : true;
+        }
+
+        public virtual void CheckNicknameAndPersinality(out bool correctNickname, out bool correctPersonality)
+        {
+            correctNickname = (Nickname == " " || Nickname == "tbd") ? false : true;
+            correctPersonality = (PersonalityDescription == "" || PersonalityDescription == "tbd") ? false : true;
         }
     }
 }

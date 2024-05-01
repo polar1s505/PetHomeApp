@@ -22,8 +22,6 @@
                 Console.WriteLine(" 4. Ensure animal nicknames and personality descriptions are complete");
                 Console.WriteLine(" 5. Edit an animal’s age");
                 Console.WriteLine(" 6. Edit an animal’s personality description");
-                Console.WriteLine(" 7. Display all cats with a specified characteristic");
-                Console.WriteLine(" 8. Display all dogs with a specified characteristic");
                 Console.WriteLine();
                 Console.WriteLine("Enter your selection number (or type Exit to exit the program)");
 
@@ -51,10 +49,121 @@
                         AddPet(ourAnimals);
                         break;
 
+                    case "3":
+                        // Ensure animal ages and physical descriptions are complete
+                        bool correctAge;
+                        bool coorectPhysicalDescr;
+                        bool validEntry;
+
+                        foreach (var animal in ourAnimals)
+                        {
+                            animal.CheckAgeAndPhyscalDescr(out correctAge, out coorectPhysicalDescr);
+
+                            if(!correctAge)
+                            {
+                                int petAge;
+                                validEntry = false;
+
+                                do
+                                {
+                                    Console.WriteLine($"Enter an age for {animal.ID}");
+
+                                    readResult = Console.ReadLine();
+                                    if (readResult != null)
+                                    {
+                                        if (validEntry = int.TryParse(readResult, out petAge))
+                                        {
+                                            animal.Age = petAge.ToString();
+                                        }
+                                    }
+                                } while (validEntry == false);
+                            }
+
+                            if (!coorectPhysicalDescr)
+                            {  
+                                do
+                                {
+                                    Console.WriteLine($"Enter a physical description for {animal.ID} (size, color, breed, gender, weight, housebroken)");
+
+                                    validEntry = false;
+                                    readResult = Console.ReadLine();
+                                    if (readResult != null)
+                                    {
+                                        readResult = readResult.ToLower();
+                                        if(!(string.IsNullOrEmpty(readResult)))
+                                        {
+                                            animal.PhysicalDescription = readResult;
+                                            validEntry = true;
+                                        }
+                                    }
+                                } while (validEntry == false);
+                            }
+                        }
+
+                        Console.WriteLine("\nAge and physical description fields are complete for all of our friends.");
+                        Console.WriteLine("Press the Enter key to continue.");
+                        readResult = Console.ReadLine();
+                        break;
+
+                    case "4":
+                        // Ensure animal nicknames and personality descriptions are complete
+                        bool correctNickname;
+                        bool coorectPersonalityDescr;
+                        validEntry = false;
+
+                        foreach (var animal in ourAnimals)
+                        {
+                            animal.CheckNicknameAndPersinality(out correctNickname, out coorectPersonalityDescr);
+
+                            if (!correctNickname)
+                            {
+                                do
+                                {
+                                    Console.WriteLine($"Enter a nickname for {animal.ID}");
+
+                                    validEntry = false;
+                                    readResult = Console.ReadLine();
+                                    if (readResult != null)
+                                    {
+                                        readResult = readResult.ToLower();
+                                        if (!(string.IsNullOrEmpty(readResult)))
+                                        {
+                                            animal.Nickname = readResult;
+                                            validEntry = true;
+                                        }
+                                    }
+                                } while (validEntry == false);
+                            }
+                            
+                            if (!coorectPersonalityDescr)
+                            {
+                                do
+                                {
+                                    Console.WriteLine($"Enter a personality description for {animal.ID} (likes or dislikes, tricks, energy level)");
+
+                                    validEntry = false;
+                                    readResult = Console.ReadLine();
+                                    if (readResult != null)
+                                    {
+                                        readResult = readResult.ToLower();
+                                        if (!(string.IsNullOrEmpty(readResult)))
+                                        {
+                                            animal.PersonalityDescription = readResult;
+                                            validEntry = true;
+                                        }
+                                    }
+                                } while (validEntry == false);
+                            }
+                        }
+
+                        Console.WriteLine("\nNickname and personality description fields are complete for all of our friends.");
+                        Console.WriteLine("Press the Enter key to continue.");
+                        readResult = Console.ReadLine();
+                        break;
+
                     default:
                         break;
                 }
-
             } while (menuSelection != "exit");
         }
 
