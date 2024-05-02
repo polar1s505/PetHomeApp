@@ -59,7 +59,7 @@
                         {
                             animal.CheckAgeAndPhyscalDescr(out correctAge, out coorectPhysicalDescr);
 
-                            if(!correctAge)
+                            if (!correctAge)
                             {
                                 int petAge;
                                 validEntry = false;
@@ -80,7 +80,7 @@
                             }
 
                             if (!coorectPhysicalDescr)
-                            {  
+                            {
                                 do
                                 {
                                     Console.WriteLine($"Enter a physical description for {animal.ID} (size, color, breed, gender, weight, housebroken)");
@@ -90,7 +90,7 @@
                                     if (readResult != null)
                                     {
                                         readResult = readResult.ToLower();
-                                        if(!(string.IsNullOrEmpty(readResult)))
+                                        if (!(string.IsNullOrEmpty(readResult)))
                                         {
                                             animal.PhysicalDescription = readResult;
                                             validEntry = true;
@@ -134,7 +134,7 @@
                                     }
                                 } while (validEntry == false);
                             }
-                            
+
                             if (!coorectPersonalityDescr)
                             {
                                 do
@@ -157,6 +157,105 @@
                         }
 
                         Console.WriteLine("\nNickname and personality description fields are complete for all of our friends.");
+                        Console.WriteLine("Press the Enter key to continue.");
+                        readResult = Console.ReadLine();
+                        break;
+
+                    case "5":
+                        // Edit an animal's age by nickname
+                        validEntry = false;
+                        
+                        Console.WriteLine("List of available animals' nicknames:");
+                        foreach (var animal in ourAnimals)
+                        {
+                            if (animal.Nickname != "" && animal.Nickname != "tbd")
+                                Console.WriteLine($"> {animal.Nickname}");
+                        }
+
+                        do
+                        {
+                            Console.WriteLine("\nEnter a nickname of pet whose age you want to edit:");
+
+                            readResult = Console.ReadLine();
+                            if (readResult != null)
+                            {
+                                readResult = readResult.ToLower().Trim();
+
+                                foreach (var animal in ourAnimals)
+                                {
+                                    if (animal.Nickname == "" || animal.Nickname == "tbd")
+                                        continue;
+
+                                    if (animal.Nickname.ToLower().Equals(readResult))
+                                    {
+                                        int petAge = 0;
+
+                                        do
+                                        {
+                                            Console.WriteLine($"Enter the pet's new age for {animal.Nickname}:");
+                                            readResult = Console.ReadLine();
+                                            if (readResult != null)
+                                            {
+                                                validEntry = int.TryParse(readResult, out petAge);
+                                            }
+                                        } while (validEntry == false);
+
+                                        animal.Age = petAge.ToString();
+                                        break;
+                                    }
+                                }
+                            }
+                        } while (validEntry == false);
+
+                        Console.WriteLine($"You successfully changed animal's age.");
+                        Console.WriteLine("Press the Enter key to continue.");
+                        readResult = Console.ReadLine();
+                        break;
+
+                    case "6":
+                        // Edit an animal's personality description by nickname
+                        validEntry = false;
+
+                        Console.WriteLine("List of available animals' nicknames:");
+                        foreach (var animal in ourAnimals)
+                        {
+                            if (animal.Nickname != "" && animal.Nickname != "tbd")
+                                Console.WriteLine($"> {animal.Nickname}");
+                        }
+
+                        do
+                        {
+                            Console.WriteLine("\nEnter a nickname of pet whose personality description you want to edit:");
+
+                            readResult = Console.ReadLine();
+                            if (readResult != null)
+                            {
+                                readResult = readResult.ToLower().Trim();
+
+                                foreach (var animal in ourAnimals)
+                                {
+                                    if (animal.Nickname == "" || animal.Nickname == "tbd")
+                                        continue;
+
+                                    if (animal.Nickname.ToLower().Equals(readResult))
+                                    {
+                                        do
+                                        {
+                                            Console.WriteLine($"Enter the a new personality description for {animal.Nickname}");
+                                            readResult = Console.ReadLine();
+                                            if (!(String.IsNullOrEmpty(readResult)))
+                                            {
+                                                animal.PersonalityDescription = readResult;
+                                                validEntry = true;
+                                                break;
+                                            }
+                                        } while (validEntry == false);
+                                    }
+                                }
+                            }
+                        } while (validEntry == false);
+
+                        Console.WriteLine($"You successfully changed animal's personality description.");
                         Console.WriteLine("Press the Enter key to continue.");
                         readResult = Console.ReadLine();
                         break;
@@ -290,7 +389,7 @@
                     Cat cat = new Cat(animalID, animalAge, animalNickname, animalPhysicalDescription, animalPersonalityDescription);
                     ourAnimals.Add(cat);
                 }
-                else 
+                else
                 {
                     Dog dog = new Dog(animalID, animalAge, animalNickname, animalPhysicalDescription, animalPersonalityDescription);
                     ourAnimals.Add(dog);
@@ -299,7 +398,6 @@
                 Console.WriteLine("Pet was successfully added!");
                 Console.WriteLine("Press the Enter key to continue.");
                 readResult = Console.ReadLine();
-                
 
                 do
                 {
@@ -307,10 +405,6 @@
                     anotherPet = Console.ReadLine()?.ToLower();
 
                 } while (anotherPet != "y" && anotherPet != "n");
-
-
-
-
             }
         }
     }
