@@ -1,6 +1,4 @@
-﻿using System.Reflection.PortableExecutable;
-
-namespace PetHomeApp
+﻿namespace PetHomeApp
 {
     public class App
     {
