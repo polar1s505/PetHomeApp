@@ -10,7 +10,7 @@ This is a console application for managing this shelter.
 
 Functionality
 
-![image](https://github.com/polar1s505/PetHomeApp/assets/39673584/5aa04a94-871e-46f3-9ea0-043d464aa303)
+![image](https://github.com/polar1s505/PetHomeApp/assets/39673584/6e846753-4e07-4376-8a6a-70c8bc249a22)
 
 Here is the translation of the provided text into English:
 
@@ -29,7 +29,7 @@ Here is the translation of the provided text into English:
 
 Функції
 
-![image](https://github.com/polar1s505/PetHomeApp/assets/39673584/5aa04a94-871e-46f3-9ea0-043d464aa303)
+![image](https://github.com/polar1s505/PetHomeApp/assets/39673584/920faaac-eec2-4ec3-b663-3af5ec489807)
 
 1) Вивести на екран всю наявну інфу про всіх тварин
 2) Додати нову тварину
