@@ -12,8 +12,6 @@ Functionality
 
 ![image](https://github.com/polar1s505/PetHomeApp/assets/39673584/6e846753-4e07-4376-8a6a-70c8bc249a22)
 
-Here is the translation of the provided text into English:
-
 1) Display all available information about all pets on the screen.
 2) Add a new pet.
 3) Check for completion of the "Age" and "Physical Description" fields.
