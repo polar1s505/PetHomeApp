@@ -1,4 +1,4 @@
-﻿namespace PetHomeApp
+﻿namespace PetHomeApp.Classes
 {
     public class Dog : PetBase
     {
