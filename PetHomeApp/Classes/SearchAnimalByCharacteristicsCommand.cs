@@ -74,7 +74,7 @@ namespace PetHomeApp.Classes
             readResult = Console.ReadLine();
         }
 
-        private static void ProgressBar(PetBase animal, string search)
+        private void ProgressBar(PetBase animal, string search)
         {
             string[] progressBar = { " |", " /", "--", " \\", " *" };
 
