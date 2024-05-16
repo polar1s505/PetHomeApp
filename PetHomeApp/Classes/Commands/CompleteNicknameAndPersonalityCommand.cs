@@ -1,21 +1,18 @@
-﻿using PetHomeApp.Interfaces;
+﻿using PetHomeApp.Classes.Models;
+using PetHomeApp.Interfaces;
 
-namespace PetHomeApp.Classes
+namespace PetHomeApp.Classes.Commands
 {
     public class CompleteNicknameAndPersonalityCommand : ICommand
     {
         public void Execute(List<PetBase> animals)
         {
-            bool correctNickname;
-            bool coorectPersonalityDescr;
             bool validEntry = false;
             string? readResult;
 
             foreach (var animal in animals)
             {
-                animal.CheckNicknameAndPersinality(out correctNickname, out coorectPersonalityDescr);
-
-                if (!correctNickname)
+                if (!animal.CheckNickname())
                 {
                     do
                     {
@@ -35,7 +32,7 @@ namespace PetHomeApp.Classes
                     } while (validEntry == false);
                 }
 
-                if (!coorectPersonalityDescr)
+                if (!animal.CheckPersonality())
                 {
                     do
                     {

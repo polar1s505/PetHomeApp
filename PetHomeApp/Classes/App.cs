@@ -1,4 +1,6 @@
-﻿using PetHomeApp.Interfaces;
+﻿using PetHomeApp.Classes.Commands;
+using PetHomeApp.Classes.Models;
+using PetHomeApp.Interfaces;
 
 namespace PetHomeApp.Classes
 {

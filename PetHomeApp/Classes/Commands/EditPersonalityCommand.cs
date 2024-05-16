@@ -1,8 +1,9 @@
-﻿using PetHomeApp.Interfaces;
+﻿using PetHomeApp.Classes.Models;
+using PetHomeApp.Interfaces;
 
-namespace PetHomeApp.Classes
+namespace PetHomeApp.Classes.Commands
 {
-    public class EditAgeCommand : ICommand
+    public class EditPersonalityCommand : ICommand
     {
         public void Execute(List<PetBase> animals)
         {
@@ -12,13 +13,13 @@ namespace PetHomeApp.Classes
             Console.WriteLine("List of available animals' nicknames:");
             foreach (var animal in animals)
             {
-                if (animal.Nickname != "" && animal.Nickname != "tbd")
+                if (animal.Nickname != "" && animal.Nickname != DefaultValues.NICKNAME)
                     Console.WriteLine($"> {animal.Nickname}");
             }
 
             do
             {
-                Console.WriteLine("\nEnter a nickname of pet whose age you want to edit:");
+                Console.WriteLine("\nEnter a nickname of pet whose personality description you want to edit:");
 
                 readResult = Console.ReadLine();
                 if (readResult != null)
@@ -27,31 +28,28 @@ namespace PetHomeApp.Classes
 
                     foreach (var animal in animals)
                     {
-                        if (animal.Nickname == "" || animal.Nickname == "tbd")
+                        if (animal.Nickname == "" || animal.Nickname == DefaultValues.NICKNAME)
                             continue;
 
                         if (animal.Nickname.ToLower().Equals(readResult))
                         {
-                            int petAge = 0;
-
                             do
                             {
-                                Console.WriteLine($"Enter the pet's new age for {animal.Nickname}:");
+                                Console.WriteLine($"Enter the a new personality description for {animal.Nickname}");
                                 readResult = Console.ReadLine();
-                                if (readResult != null)
+                                if (!string.IsNullOrEmpty(readResult))
                                 {
-                                    validEntry = int.TryParse(readResult, out petAge);
+                                    animal.PersonalityDescription = readResult;
+                                    validEntry = true;
+                                    break;
                                 }
                             } while (validEntry == false);
-
-                            animal.Age = petAge.ToString();
-                            break;
                         }
                     }
                 }
             } while (validEntry == false);
 
-            Console.WriteLine($"You successfully changed animal's age.");
+            Console.WriteLine($"You successfully changed animal's personality description.");
             Console.WriteLine("Press the Enter key to continue.");
             readResult = Console.ReadLine();
         }

@@ -1,21 +1,18 @@
-﻿using PetHomeApp.Interfaces;
+﻿using PetHomeApp.Classes.Models;
+using PetHomeApp.Interfaces;
 
-namespace PetHomeApp.Classes
+namespace PetHomeApp.Classes.Commands
 {
     public class CompleteAgeAndPhysicalDescrCommand : ICommand
     {
         public void Execute(List<PetBase> animals)
-        {
-            bool correctAge;
-            bool coorectPhysicalDescr;
+        {   
             bool validEntry;
             string? readResult;
 
             foreach (var animal in animals)
             {
-                animal.CheckAgeAndPhyscalDescr(out correctAge, out coorectPhysicalDescr);
-
-                if (!correctAge)
+                if (!animal.CheckAge())
                 {
                     int petAge;
                     validEntry = false;
@@ -35,7 +32,7 @@ namespace PetHomeApp.Classes
                     } while (validEntry == false);
                 }
 
-                if (!coorectPhysicalDescr)
+                if (!animal.CheckPhysicalDescription())
                 {
                     do
                     {

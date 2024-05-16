@@ -1,6 +1,7 @@
-﻿using PetHomeApp.Interfaces;
+﻿using PetHomeApp.Classes.Models;
+using PetHomeApp.Interfaces;
 
-namespace PetHomeApp.Classes
+namespace PetHomeApp.Classes.Commands
 {
     public class DisplayInfoCommand : ICommand
     {

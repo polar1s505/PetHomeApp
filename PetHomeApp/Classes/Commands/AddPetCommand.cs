@@ -1,6 +1,7 @@
-﻿using PetHomeApp.Interfaces;
+﻿using PetHomeApp.Classes.Models;
+using PetHomeApp.Interfaces;
 
-namespace PetHomeApp.Classes
+namespace PetHomeApp.Classes.Commands
 {
     public class AddPetCommand : ICommand
     {
@@ -15,6 +16,7 @@ namespace PetHomeApp.Classes
             string animalPhysicalDescription = "";
             string animalPersonalityDescription = "";
             string animalNickname = "";
+            AnimalType type = 0;
 
             while (anotherPet == "y")
             {
@@ -28,24 +30,38 @@ namespace PetHomeApp.Classes
 
                     if (readResult != null)
                     {
-                        animalSpecies = readResult.ToLower();
-                        if (animalSpecies != "dog" && animalSpecies != "cat")
+                        animalSpecies = readResult.ToLower().Trim();
+                        if (animalSpecies == "dog")
+                        {
+                            type = AnimalType.Dog;
+                            animalSpecies = readResult;
+                            validEntry = true;
+                        }
+                        else if (animalSpecies == "cat")
+                        {
+                            type = AnimalType.Cat;
+                            animalSpecies = readResult;
+                            validEntry = true;
+
+                        }
+                        else
                         {
                             Console.WriteLine($"You incorrect entered species: {animalSpecies}.\nTry again\n");
                             validEntry = false;
                         }
-                        else 
-                        {
-                            animalSpecies = readResult;
-                            validEntry = true;
-                        }
                     }
                 } while (validEntry == false);
 
-                if (animalSpecies == "dog")
-                    animalID = animalSpecies.Substring(0, 1) + (animals.Count(item => item is Dog) + 1).ToString();
+
+
+                // assign a ID:
+                // for dog: d + 'count of a dog'
+                // for cat: c+ 'count of a cat'
+                // i.e: d3, c5
+                if (type == AnimalType.Dog)
+                    animalID = "d" + (animals.Count(item => item is Dog) + 1).ToString();
                 else
-                    animalID = animalSpecies.Substring(0, 1) + (animals.Count(item => item is Cat) + 1).ToString();
+                    animalID = "c" + (animals.Count(item => item is Cat) + 1).ToString();
 
                 // get the pet's age. can be ? at initial entry
                 do
@@ -57,7 +73,7 @@ namespace PetHomeApp.Classes
                     if (readResult != null)
                     {
                         animalAge = readResult.ToLower();
-                        if (animalAge != "?")
+                        if (animalAge != DefaultValues.AGE)
                         {
                             validEntry = int.TryParse(animalAge, out petAge);
                         }
@@ -79,7 +95,7 @@ namespace PetHomeApp.Classes
 
                         if (animalPhysicalDescription == "")
                         {
-                            animalPhysicalDescription = "tbd";
+                            animalPhysicalDescription = DefaultValues.PHYSICAL_DESCRIPTION;
                         }
                     }
                 } while (animalPhysicalDescription == "");
@@ -94,7 +110,7 @@ namespace PetHomeApp.Classes
                         animalPersonalityDescription = readResult.ToLower();
                         if (animalPersonalityDescription == "")
                         {
-                            animalPersonalityDescription = "tbd";
+                            animalPersonalityDescription = DefaultValues.PERSONALITY;
                         }
                     }
                 } while (animalPersonalityDescription == "");
@@ -109,20 +125,20 @@ namespace PetHomeApp.Classes
                         animalNickname = readResult.ToLower();
                         if (animalNickname == "")
                         {
-                            animalNickname = "tbd";
+                            animalNickname = DefaultValues.NICKNAME;
                         }
                     }
                 } while (animalNickname == "");
 
-                if (animalSpecies == "cat")
-                {
-                    Cat cat = new Cat(animalID, animalAge, animalNickname, animalPhysicalDescription, animalPersonalityDescription);
-                    animals.Add(cat);
-                }
-                else
+                if (type == AnimalType.Dog)
                 {
                     Dog dog = new Dog(animalID, animalAge, animalNickname, animalPhysicalDescription, animalPersonalityDescription);
                     animals.Add(dog);
+                }
+                else
+                {
+                    Cat cat = new Cat(animalID, animalAge, animalNickname, animalPhysicalDescription, animalPersonalityDescription);
+                    animals.Add(cat); 
                 }
 
                 Console.WriteLine("Pet was successfully added!");

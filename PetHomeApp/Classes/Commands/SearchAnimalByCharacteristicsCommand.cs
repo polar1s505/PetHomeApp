@@ -1,6 +1,7 @@
-﻿using PetHomeApp.Interfaces;
+﻿using PetHomeApp.Classes.Models;
+using PetHomeApp.Interfaces;
 
-namespace PetHomeApp.Classes
+namespace PetHomeApp.Classes.Commands
 {
     public class SearchAnimalByCharacteristicsCommand : ICommand
     {
@@ -38,7 +39,7 @@ namespace PetHomeApp.Classes
             // loop through ourAnimals list
             foreach (var animal in animals)
             {
-                petDescription = $"Physical description: {animal.PhysicalDescription}\nPersonality: {animal.PersonalityDescription}";
+                petDescription = animal.FullDescription;
                 bool matchCurrentPet = false;
 
                 foreach (var search in petSearches)
