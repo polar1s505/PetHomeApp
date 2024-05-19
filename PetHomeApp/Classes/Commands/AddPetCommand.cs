@@ -9,6 +9,7 @@ namespace PetHomeApp.Classes.Commands
         public void Execute(List<PetBase> animals)
         {
             UserInputReader userInputReader = new UserInputReader();
+            IdGegerator idGegerator = new IdGegerator(animals);
 
             string? readResult;
             string? anotherPet = "y";
@@ -22,18 +23,10 @@ namespace PetHomeApp.Classes.Commands
             while (anotherPet == "y")
             {
                 animalType = userInputReader.GetSpecies();
-
-                if (animalType == AnimalType.Dog)
-                    animalID = "d" + (animals.Count(item => item is Dog) + 1).ToString();
-                else
-                    animalID = "c" + (animals.Count(item => item is Cat) + 1).ToString();
-
+                animalID = idGegerator.GenerateID(animalType);
                 animalAge = userInputReader.GetAge();
-
                 animalPhysicalDescription = userInputReader.GetPhysicalDescription();
-
                 animalPersonalityDescription = userInputReader.GetPersonality();
-
                 animalNickname = userInputReader.GetNickname();
 
                 if (animalType == AnimalType.Dog)
