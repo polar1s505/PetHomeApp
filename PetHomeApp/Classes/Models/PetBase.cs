@@ -1,4 +1,5 @@
 ﻿using PetHomeApp.Classes.Utils;
+using System.Text.Json.Serialization;
 
 namespace PetHomeApp.Classes.Models
 {
@@ -17,6 +18,7 @@ namespace PetHomeApp.Classes.Models
         public string Nickname { get; set; }
         public string PhysicalDescription { get; set; }
         public string PersonalityDescription { get; set; }
+        [JsonIgnore]
         public string FullDescription
         {
             get

@@ -1,9 +1,7 @@
-﻿using Microsoft.VisualBasic;
-using PetHomeApp.Classes.Commands;
+﻿using PetHomeApp.Classes.Commands;
 using PetHomeApp.Classes.Models;
 using PetHomeApp.Classes.Utils;
 using PetHomeApp.Interfaces;
-using System.Text.Json;
 
 namespace PetHomeApp.Classes
 {
@@ -15,7 +13,6 @@ namespace PetHomeApp.Classes
             string filePath = "db.json";
 
             ourAnimals = FileManager.ReadFromJsonFile(filePath);
-
 
             string? readResult;
             string menuSelection = "";
