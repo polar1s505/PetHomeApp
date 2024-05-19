@@ -7,49 +7,19 @@ namespace PetHomeApp.Classes.Commands
     {
         public void Execute(List<PetBase> animals)
         {   
-            bool validEntry;
+            UserInputReader userInputReader = new UserInputReader();
             string? readResult;
 
             foreach (var animal in animals)
             {
                 if (!animal.HasAgeValue())
                 {
-                    int petAge;
-                    validEntry = false;
-
-                    do
-                    {
-                        Console.WriteLine($"Enter an age for {animal.ID}");
-
-                        readResult = Console.ReadLine();
-                        if (readResult != null)
-                        {
-                            if (validEntry = int.TryParse(readResult, out petAge))
-                            {
-                                animal.Age = petAge.ToString();
-                            }
-                        }
-                    } while (validEntry == false);
+                    userInputReader.GetAge(animal);
                 }
 
                 if (!animal.HasPhysicalDescription())
                 {
-                    do
-                    {
-                        Console.WriteLine($"Enter a physical description for {animal.ID} (size, color, breed, gender, weight, housebroken)");
-
-                        validEntry = false;
-                        readResult = Console.ReadLine();
-                        if (readResult != null)
-                        {
-                            readResult = readResult.ToLower();
-                            if (!string.IsNullOrEmpty(readResult))
-                            {
-                                animal.PhysicalDescription = readResult;
-                                validEntry = true;
-                            }
-                        }
-                    } while (validEntry == false);
+                    userInputReader.GetPhysicalDescription(animal);
                 }
             }
 

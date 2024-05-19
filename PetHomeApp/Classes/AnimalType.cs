@@ -2,7 +2,7 @@
 {
 	public enum AnimalType
 	{
-        Dog,
+        Dog = 1,
 		Cat
 	}
 }

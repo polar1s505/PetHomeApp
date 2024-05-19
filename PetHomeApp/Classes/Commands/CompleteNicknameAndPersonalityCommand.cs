@@ -7,49 +7,19 @@ namespace PetHomeApp.Classes.Commands
     {
         public void Execute(List<PetBase> animals)
         {
-            bool validEntry = false;
+            UserInputReader userInputReader = new UserInputReader();
             string? readResult;
 
             foreach (var animal in animals)
             {
                 if (!animal.HasNickname())
                 {
-                    do
-                    {
-                        Console.WriteLine($"Enter a nickname for {animal.ID}");
-
-                        validEntry = false;
-                        readResult = Console.ReadLine();
-                        if (readResult != null)
-                        {
-                            readResult = readResult.ToLower();
-                            if (!string.IsNullOrEmpty(readResult))
-                            {
-                                animal.Nickname = readResult;
-                                validEntry = true;
-                            }
-                        }
-                    } while (validEntry == false);
+                    userInputReader.GetNickname(animal);
                 }
 
                 if (!animal.HasPersonality())
                 {
-                    do
-                    {
-                        Console.WriteLine($"Enter a personality description for {animal.ID} (likes or dislikes, tricks, energy level)");
-
-                        validEntry = false;
-                        readResult = Console.ReadLine();
-                        if (readResult != null)
-                        {
-                            readResult = readResult.ToLower();
-                            if (!string.IsNullOrEmpty(readResult))
-                            {
-                                animal.PersonalityDescription = readResult;
-                                validEntry = true;
-                            }
-                        }
-                    } while (validEntry == false);
+                    userInputReader.GetPersonality(animal);
                 }
             }
 

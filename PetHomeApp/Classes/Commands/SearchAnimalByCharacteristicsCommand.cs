@@ -7,20 +7,9 @@ namespace PetHomeApp.Classes.Commands
     {
         public void Execute(List<PetBase> animals)
         {
+            UserInputReader userInputReader = new UserInputReader();
             string? readResult;
-            string petCharacteristics = "";
-
-            // prompt user for pet characteristics
-            while (petCharacteristics == "")
-            {
-                Console.WriteLine($"Please, enter pet characteristics to search for (seperated by commas):");
-
-                readResult = Console.ReadLine();
-                if (readResult != null)
-                {
-                    petCharacteristics = readResult.ToLower();
-                }
-            }
+            string petCharacteristics = userInputReader.GetPetCharacteristics();
 
             // split entered characteristics (search) into string array
             string[] petSearches = petCharacteristics.Split(',');

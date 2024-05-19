@@ -7,6 +7,7 @@ namespace PetHomeApp.Classes.Commands
     {
         public void Execute(List<PetBase> animals)
         {
+            UserInputReader userInputReader = new UserInputReader();
             string? readResult;
             bool validEntry = false;
 
@@ -33,25 +34,14 @@ namespace PetHomeApp.Classes.Commands
 
                         if (animal.Nickname.ToLower().Equals(readResult))
                         {
-                            int petAge = 0;
-
-                            do
-                            {
-                                Console.WriteLine($"Enter the pet's new age for {animal.Nickname}:");
-                                readResult = Console.ReadLine();
-                                if (readResult != null)
-                                {
-                                    validEntry = int.TryParse(readResult, out petAge);
-                                }
-                            } while (validEntry == false);
-
-                            animal.Age = petAge.ToString();
+                            userInputReader.GetAge(animal);
+                            validEntry = true;
                             break;
                         }
                     }
                 }
             } while (validEntry == false);
-
+            
             Console.WriteLine($"You successfully changed animal's age.");
             Console.WriteLine("Press the Enter key to continue.");
             readResult = Console.ReadLine();

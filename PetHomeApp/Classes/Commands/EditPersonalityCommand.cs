@@ -7,6 +7,7 @@ namespace PetHomeApp.Classes.Commands
     {
         public void Execute(List<PetBase> animals)
         {
+            UserInputReader userInputReader = new UserInputReader();
             string? readResult;
             bool validEntry = false;
 
@@ -33,17 +34,9 @@ namespace PetHomeApp.Classes.Commands
 
                         if (animal.Nickname.ToLower().Equals(readResult))
                         {
-                            do
-                            {
-                                Console.WriteLine($"Enter the a new personality description for {animal.Nickname}");
-                                readResult = Console.ReadLine();
-                                if (!string.IsNullOrEmpty(readResult))
-                                {
-                                    animal.PersonalityDescription = readResult;
-                                    validEntry = true;
-                                    break;
-                                }
-                            } while (validEntry == false);
+                            userInputReader.GetPersonality(animal);
+                            validEntry = true;
+                            break;
                         }
                     }
                 }

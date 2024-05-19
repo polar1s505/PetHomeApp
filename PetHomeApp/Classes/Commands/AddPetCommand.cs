@@ -7,122 +7,33 @@ namespace PetHomeApp.Classes.Commands
     {
         public void Execute(List<PetBase> animals)
         {
-            bool validEntry;
+            UserInputReader userInputReader = new UserInputReader();
+
             string? readResult;
             string? anotherPet = "y";
             string animalID = "";
-            string animalAge = "";
-            string animalPhysicalDescription = "";
-            string animalPersonalityDescription = "";
-            string animalNickname = "";
-            AnimalType animalType = 0;
+            string animalAge;
+            string animalPhysicalDescription;
+            string animalPersonalityDescription;
+            string animalNickname;
+            AnimalType animalType;
 
             while (anotherPet == "y")
             {
-                validEntry = false;
-                
+                animalType = userInputReader.GetSpecies();
 
-                // get species (cat or dog) - string animalSpecies is a required field
-                do
-                {
-                    Console.WriteLine("\n\rEnter '0 - for a dog' or '1 - for a cat' to begin a new entry");
-                    readResult = Console.ReadLine();
-
-                    if (readResult != null)
-                    {
-                        readResult = readResult.ToLower().Trim();
-
-                        if (Enum.TryParse(readResult, out animalType))
-                        {
-                            if (animalType == AnimalType.Dog || animalType == AnimalType.Cat)
-                            {
-                                validEntry = true;
-                            }
-                            else
-                            {
-                                Console.WriteLine($"You incorrect entered species.\nTry again\n");
-                            }
-                        }
-                    }
-                } while (validEntry == false);
-
-
-
-                // assign a ID:
-                // for dog: d + 'count of a dog'
-                // for cat: c+ 'count of a cat'
-                // i.e: d3, c5
                 if (animalType == AnimalType.Dog)
                     animalID = "d" + (animals.Count(item => item is Dog) + 1).ToString();
                 else
                     animalID = "c" + (animals.Count(item => item is Cat) + 1).ToString();
 
-                // get the pet's age. can be ? at initial entry
-                do
-                {
-                    int petAge;
+                animalAge = userInputReader.GetAge();
 
-                    Console.WriteLine("Enter the pet's age or enter ? if unknown");
-                    readResult = Console.ReadLine();
-                    if (readResult != null)
-                    {
-                        animalAge = readResult.ToLower();
-                        if (animalAge != DefaultValues.AGE)
-                        {
-                            validEntry = int.TryParse(animalAge, out petAge);
-                        }
-                        else
-                        {
-                            validEntry = true;
-                        }
-                    }
-                } while (validEntry == false);
+                animalPhysicalDescription = userInputReader.GetPhysicalDescription();
 
-                // get a description of the pet's physical appearance/condition - animalPhysicalDescription can be blank.
-                do
-                {
-                    Console.WriteLine("Enter a physical description of the pet (size, color, gender, weight, housebroken)");
-                    readResult = Console.ReadLine();
-                    if (readResult != null)
-                    {
-                        animalPhysicalDescription = readResult.ToLower();
+                animalPersonalityDescription = userInputReader.GetPersonality();
 
-                        if (animalPhysicalDescription == "")
-                        {
-                            animalPhysicalDescription = DefaultValues.PHYSICAL_DESCRIPTION;
-                        }
-                    }
-                } while (animalPhysicalDescription == "");
-
-                // get a description of the pet's personality - animalPersonalityDescription can be blank.
-                do
-                {
-                    Console.WriteLine("Enter a description of the pet's personality (likes or dislikes, tricks, energy level)");
-                    readResult = Console.ReadLine();
-                    if (readResult != null)
-                    {
-                        animalPersonalityDescription = readResult.ToLower();
-                        if (animalPersonalityDescription == "")
-                        {
-                            animalPersonalityDescription = DefaultValues.PERSONALITY;
-                        }
-                    }
-                } while (animalPersonalityDescription == "");
-
-                // get the pet's nickname. animalNickname can be blank.
-                do
-                {
-                    Console.WriteLine("Enter a nickname for the pet");
-                    readResult = Console.ReadLine();
-                    if (readResult != null)
-                    {
-                        animalNickname = readResult.ToLower();
-                        if (animalNickname == "")
-                        {
-                            animalNickname = DefaultValues.NICKNAME;
-                        }
-                    }
-                } while (animalNickname == "");
+                animalNickname = userInputReader.GetNickname();
 
                 if (animalType == AnimalType.Dog)
                 {
