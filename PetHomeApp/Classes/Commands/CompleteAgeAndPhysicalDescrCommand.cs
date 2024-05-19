@@ -12,7 +12,7 @@ namespace PetHomeApp.Classes.Commands
 
             foreach (var animal in animals)
             {
-                if (!animal.CheckAge())
+                if (!animal.HasAgeValue())
                 {
                     int petAge;
                     validEntry = false;
@@ -32,7 +32,7 @@ namespace PetHomeApp.Classes.Commands
                     } while (validEntry == false);
                 }
 
-                if (!animal.CheckPhysicalDescription())
+                if (!animal.HasPhysicalDescription())
                 {
                     do
                     {

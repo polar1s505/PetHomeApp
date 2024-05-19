@@ -12,7 +12,7 @@ namespace PetHomeApp.Classes.Commands
 
             foreach (var animal in animals)
             {
-                if (!animal.CheckNickname())
+                if (!animal.HasNickname())
                 {
                     do
                     {
@@ -32,7 +32,7 @@ namespace PetHomeApp.Classes.Commands
                     } while (validEntry == false);
                 }
 
-                if (!animal.CheckPersonality())
+                if (!animal.HasPersonality())
                 {
                     do
                     {

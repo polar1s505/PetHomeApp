@@ -11,43 +11,37 @@ namespace PetHomeApp.Classes.Commands
             string? readResult;
             string? anotherPet = "y";
             string animalID = "";
-            string animalSpecies = "";
             string animalAge = "";
             string animalPhysicalDescription = "";
             string animalPersonalityDescription = "";
             string animalNickname = "";
-            AnimalType type = 0;
+            AnimalType animalType = 0;
 
             while (anotherPet == "y")
             {
                 validEntry = false;
+                
 
                 // get species (cat or dog) - string animalSpecies is a required field
                 do
                 {
-                    Console.WriteLine("\n\rEnter 'dog' or 'cat' to begin a new entry");
+                    Console.WriteLine("\n\rEnter '0 - for a dog' or '1 - for a cat' to begin a new entry");
                     readResult = Console.ReadLine();
 
                     if (readResult != null)
                     {
-                        animalSpecies = readResult.ToLower().Trim();
-                        if (animalSpecies == "dog")
-                        {
-                            type = AnimalType.Dog;
-                            animalSpecies = readResult;
-                            validEntry = true;
-                        }
-                        else if (animalSpecies == "cat")
-                        {
-                            type = AnimalType.Cat;
-                            animalSpecies = readResult;
-                            validEntry = true;
+                        readResult = readResult.ToLower().Trim();
 
-                        }
-                        else
+                        if (Enum.TryParse(readResult, out animalType))
                         {
-                            Console.WriteLine($"You incorrect entered species: {animalSpecies}.\nTry again\n");
-                            validEntry = false;
+                            if (animalType == AnimalType.Dog || animalType == AnimalType.Cat)
+                            {
+                                validEntry = true;
+                            }
+                            else
+                            {
+                                Console.WriteLine($"You incorrect entered species.\nTry again\n");
+                            }
                         }
                     }
                 } while (validEntry == false);
@@ -58,7 +52,7 @@ namespace PetHomeApp.Classes.Commands
                 // for dog: d + 'count of a dog'
                 // for cat: c+ 'count of a cat'
                 // i.e: d3, c5
-                if (type == AnimalType.Dog)
+                if (animalType == AnimalType.Dog)
                     animalID = "d" + (animals.Count(item => item is Dog) + 1).ToString();
                 else
                     animalID = "c" + (animals.Count(item => item is Cat) + 1).ToString();
@@ -130,14 +124,14 @@ namespace PetHomeApp.Classes.Commands
                     }
                 } while (animalNickname == "");
 
-                if (type == AnimalType.Dog)
+                if (animalType == AnimalType.Dog)
                 {
-                    Dog dog = new Dog(animalID, animalAge, animalNickname, animalPhysicalDescription, animalPersonalityDescription);
+                    Dog dog = new Dog(animalID, animalType, animalAge, animalNickname, animalPhysicalDescription, animalPersonalityDescription);
                     animals.Add(dog);
                 }
                 else
                 {
-                    Cat cat = new Cat(animalID, animalAge, animalNickname, animalPhysicalDescription, animalPersonalityDescription);
+                    Cat cat = new Cat(animalID, animalType, animalAge, animalNickname, animalPhysicalDescription, animalPersonalityDescription);
                     animals.Add(cat); 
                 }
 

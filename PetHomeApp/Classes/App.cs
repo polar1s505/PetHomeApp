@@ -76,10 +76,10 @@ namespace PetHomeApp.Classes
 
         private void AddSomePets(List<PetBase> ourAnimals)
         {
-            ourAnimals.Add(new Dog("d1", "5", "lola", "medium sized cream colored female golden retriever weighing about 65 pounds. housebroken.", "loves to have her belly rubbed and likes to chase her tail. gives lots of kisses."));
-            ourAnimals.Add(new Dog("d2", "12", "logan", "large reddish-brown male golden retriever weighing about 85 pounds. housebroken.", "loves to have his ears rubbed when he greets you at the door, or at any time! loves to lean-in and give doggy hugs."));
-            ourAnimals.Add(new Cat("c1", "15", "umi", "", ""));
-            ourAnimals.Add(new Cat("c2", "?", "rosa", "small white female weighing about 8 pounds. litter box trained.", "friendly"));
+            ourAnimals.Add(new Dog("d1", AnimalType.Dog , "5", "lola", "medium sized cream colored female golden retriever weighing about 65 pounds. housebroken.", "loves to have her belly rubbed and likes to chase her tail. gives lots of kisses."));
+            ourAnimals.Add(new Dog("d2", AnimalType.Dog, "12", "logan", "large reddish-brown male golden retriever weighing about 85 pounds. housebroken.", "loves to have his ears rubbed when he greets you at the door, or at any time! loves to lean-in and give doggy hugs."));
+            ourAnimals.Add(new Cat("c1", AnimalType.Cat, "15", "umi", "", ""));
+            ourAnimals.Add(new Cat("c2", AnimalType.Cat, "?", "rosa", "small white female weighing about 8 pounds. litter box trained.", "friendly"));
         }
 
         private void DisplayMainMenu()
