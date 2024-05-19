@@ -13,7 +13,7 @@ namespace PetHomeApp.Classes.Utils
             // get species (cat or dog)
             do
             {
-                Console.WriteLine("\n\rEnter '1 - for a dog' or '2 - for a cat' to begin a new entry");
+                Console.WriteLine("\n\rEnter '0 - for a dog' or '1 - for a cat' to begin a new entry");
                 readResult = Console.ReadLine();
 
                 if (readResult != null)
