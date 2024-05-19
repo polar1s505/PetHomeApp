@@ -1,4 +1,4 @@
-﻿namespace PetHomeApp.Classes
+﻿namespace PetHomeApp.Classes.Utils
 {
     public static class DefaultValues
     {

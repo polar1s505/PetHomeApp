@@ -1,6 +1,9 @@
-﻿using PetHomeApp.Classes.Commands;
+﻿using Microsoft.VisualBasic;
+using PetHomeApp.Classes.Commands;
 using PetHomeApp.Classes.Models;
+using PetHomeApp.Classes.Utils;
 using PetHomeApp.Interfaces;
+using System.Text.Json;
 
 namespace PetHomeApp.Classes
 {
@@ -9,8 +12,10 @@ namespace PetHomeApp.Classes
         public void Run()
         {
             List<PetBase> ourAnimals = new List<PetBase>();
+            string filePath = "db.json";
 
-            AddSomePets(ourAnimals);
+            ourAnimals = FileManager.ReadFromJsonFile(filePath);
+
 
             string? readResult;
             string menuSelection = "";
@@ -43,7 +48,7 @@ namespace PetHomeApp.Classes
                         // Ensure animal ages and physical descriptions are complete
                         ICommand completeAgeAndPhysycalDescrCommand = new CompleteAgeAndPhysicalDescrCommand();
                         completeAgeAndPhysycalDescrCommand.Execute(ourAnimals);
-                        break;                     
+                        break;
 
                     case "4":
                         // Ensure animal nicknames and personality descriptions are complete
@@ -72,14 +77,8 @@ namespace PetHomeApp.Classes
                         break;
                 }
             } while (menuSelection != "exit");
-        }
 
-        private void AddSomePets(List<PetBase> ourAnimals)
-        {
-            ourAnimals.Add(new Dog("d1", AnimalType.Dog , "5", "lola", "medium sized cream colored female golden retriever weighing about 65 pounds. housebroken.", "loves to have her belly rubbed and likes to chase her tail. gives lots of kisses."));
-            ourAnimals.Add(new Dog("d2", AnimalType.Dog, "12", "logan", "large reddish-brown male golden retriever weighing about 85 pounds. housebroken.", "loves to have his ears rubbed when he greets you at the door, or at any time! loves to lean-in and give doggy hugs."));
-            ourAnimals.Add(new Cat("c1", AnimalType.Cat, "15", "umi", "", ""));
-            ourAnimals.Add(new Cat("c2", AnimalType.Cat, "?", "rosa", "small white female weighing about 8 pounds. litter box trained.", "friendly"));
+            FileManager.WriteToJsonFile(ourAnimals, filePath);
         }
 
         private void DisplayMainMenu()

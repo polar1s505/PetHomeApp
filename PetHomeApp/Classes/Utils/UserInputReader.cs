@@ -1,6 +1,6 @@
 ﻿using PetHomeApp.Classes.Models;
 
-namespace PetHomeApp.Classes
+namespace PetHomeApp.Classes.Utils
 {
     public class UserInputReader
     {
@@ -32,7 +32,7 @@ namespace PetHomeApp.Classes
 
             return animalType;
         }
-        
+
         public string GetAge()
         {
             bool validEntry = false;

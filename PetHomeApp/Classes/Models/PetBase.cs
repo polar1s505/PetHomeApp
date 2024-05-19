@@ -1,4 +1,6 @@
-﻿namespace PetHomeApp.Classes.Models
+﻿using PetHomeApp.Classes.Utils;
+
+namespace PetHomeApp.Classes.Models
 {
     public abstract class PetBase
     {
