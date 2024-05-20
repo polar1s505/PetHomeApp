@@ -13,7 +13,7 @@ namespace PetHomeApp.Classes.Commands
 
             string? readResult;
             string? anotherPet = "y";
-            string animalID = "";
+            string animalID;
             string animalAge;
             string animalPhysicalDescription;
             string animalPersonalityDescription;

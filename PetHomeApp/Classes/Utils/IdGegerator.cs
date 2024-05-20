@@ -4,13 +4,13 @@ namespace PetHomeApp.Classes.Utils
 {
     public class IdGegerator
     {
-        private int _last_id_dogs;
-        private int _last_id_cats;
+        private int _lastIdDogs;
+        private int _lastIdCats;
 
         public IdGegerator(List<PetBase> animals)
         {
-            _last_id_dogs = animals.Count(animal => animal is Dog);
-            _last_id_cats = animals.Count(animal => animal is Cat);
+            _lastIdDogs = animals.Count(animal => animal is Dog);
+            _lastIdCats = animals.Count(animal => animal is Cat);
         }
         public  string GenerateID(AnimalType type)
         {
@@ -18,13 +18,13 @@ namespace PetHomeApp.Classes.Utils
             
             if (type is AnimalType.Dog)
             {
-                _last_id_dogs++;
-                id = $"d{_last_id_dogs}"; 
+                _lastIdDogs++;
+                id = $"d{_lastIdDogs}"; 
             }
             else
             {
-                _last_id_cats++;
-                id = $"c{_last_id_cats}"; 
+                _lastIdCats++;
+                id = $"c{_lastIdCats}"; 
             }
 
             return id;
